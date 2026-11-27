@@ -1,1 +1,541 @@
 
+            :root {
+                --color-bg: #eaeaea;
+                --color-accent: slategray;
+                --color-text: rgb(60, 60, 60);
+                --color-text-dark: rgb(30, 30, 30);
+                --color-text-light: rgb(90, 90, 90);
+                --color-border: silver;
+                --color-origen: #17177d;
+                --color-destino: #f8a700;
+                --font-sans: "Bricolage Grotesque", Helvetica, Arial, sans-serif;
+                --font-serif: "IBM Plex Sans", Georgia, "Times New Roman", serif;
+
+                --icono-avion: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 100 100"><path fill="slategray" d="M1005,966 l-270,-112 l-287,256 c-71,62,-133,57,-181,37 l-92,-38 l172,-415 l-277,-115 l-43,104 l-93,-39 l43,-104 c72,-171,224,-230,396,-160 l747,309 c74,32,129,88,129,161 c0,115,-123,167,-244,116 Z M1082,782 l-748,-310 c-80,-34,-153,-24,-205,23 l349,144 l-173,416 c29,12,60,6,84,-15 l319,-305 l336,139 c110,45,146,-47,38,-92 Z" transform="matrix(0.05,0,0,-0.05,20,80)"/></svg>');
+                --icono-avion-inclinado: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 100 100"><path fill="slategray" d="M1005,966 l-270,-112 l-287,256 c-71,62,-133,57,-181,37 l-92,-38 l172,-415 l-277,-115 l-43,104 l-93,-39 l43,-104 c72,-171,224,-230,396,-160 l747,309 c74,32,129,88,129,161 c0,115,-123,167,-244,116 Z M1082,782 l-748,-310 c-80,-34,-153,-24,-205,23 l349,144 l-173,416 c29,12,60,6,84,-15 l319,-305 l336,139 c110,45,146,-47,38,-92 Z" transform="rotate(40 50 50) matrix(0.05,0,0,-0.05,20,80)"/></svg>');
+                --icono-pasaporte: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="slategray" viewBox="0 0 16 16"><path d="M8 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6M6 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0m-.5 4a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/><path d="M3.232 1.776A1.5 1.5 0 0 0 2 3.252v10.95c0 .445.191.838.49 1.11.367.422.908.688 1.51.688h8a2 2 0 0 0 2-2V4a2 2 0 0 0-1-1.732v-.47A1.5 1.5 0 0 0 11.232.321l-8 1.454ZM4 3h8a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg>');
+                --icono-pulgar: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="slategray" viewBox="0 0 16 16"><path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a10 10 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733q.086.18.138.363c.077.27.113.567.113.856s-.036.586-.113.856c-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.2 3.2 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.8 4.8 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/></svg>');
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: var(--font-serif);
+                font-size: 1.1rem;
+                line-height: 1.6;
+                color: var(--color-text);
+                background: linear-gradient(to bottom, var(--color-bg), white);
+            }
+
+            a {
+                color: var(--color-text-dark);
+                text-decoration: underline dotted;
+                text-underline-offset: 3px;
+            }
+
+            a:hover {
+                text-decoration-style: solid;
+            }
+
+            p {
+                margin-bottom: 1rem;
+                text-align: justify;
+                text-align-last: left;
+                letter-spacing: 0.01em;
+                hyphens: auto;
+                text-wrap: pretty;
+            }
+
+            em {
+                font-weight: 500;
+            }
+
+            abbr {
+                font-size: 0.85em;
+                text-decoration: none;
+                cursor: help;
+            }
+
+            mark {
+                background: yellow;
+                color: inherit;
+            }
+
+            ul,
+            ol {
+                margin-bottom: 1rem;
+                list-style-position: inside;
+            }
+
+            li {
+                margin-bottom: 0.25rem;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5 {
+                font-family: var(--font-sans);
+                font-weight: 500;
+                line-height: 1.2;
+            }
+
+            h3 + p {
+                margin-top: 1rem;
+            }
+
+            hr {
+                margin: 2rem 0;
+                border: 2px solid #ccc;
+            }
+
+            .container {
+                width: 90%;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            /* Portada */
+            header {
+                margin: 3rem 0 7rem;
+                text-align: center;
+            }
+
+            header h1::before {
+                content: "";
+                display: block;
+                width: calc(1.5rem + 5vw);
+                height: calc(1.5rem + 5vw);
+                margin: 0 auto;
+                background: var(--icono-avion) no-repeat center / contain;
+            }
+
+            header h1,
+            header h2,
+            header h3 {
+                color: var(--color-accent);
+            }
+
+            header h1 {
+                font-size: calc(1.1rem + 1.8vw);
+                font-weight: 600;
+                letter-spacing: 0.1rem;
+                line-height: 1.1;
+                text-transform: uppercase;
+            }
+
+            header h2 {
+                font-size: calc(1.1rem + 1.75vw);
+            }
+
+            header h3 {
+                font-size: calc(1.1rem + 1.15vw);
+            }
+
+            header h4 {
+                margin-top: 1rem;
+                font-size: 1rem;
+            }
+
+            header h5 {
+                margin: 1rem 0 2rem;
+                font-size: 0.8rem;
+                letter-spacing: 0.05rem;
+            }
+
+            header + p {
+                font-size: 120%;
+                font-weight: 300;
+            }
+
+            /* Figuras */
+            figure {
+                display: flex;
+                gap: 0.5rem;
+                width: calc(100% + 4vw);
+                margin: 0.5rem -2vw 2rem;
+            }
+
+            figure > div {
+                flex: 1;
+            }
+
+            figure img {
+                display: block;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 4 / 3;
+                object-fit: cover;
+            }
+
+            figcaption {
+                margin-top: 0.4rem;
+                font-size: 0.8rem;
+                color: #666;
+                text-indent: 2vw;
+            }
+
+            @media (orientation: portrait) {
+                figure {
+                    flex-direction: column;
+                }
+            }
+
+            h3 {
+                margin-top: 3rem;
+            }
+
+            /* Gráficos, rankings y mapa */
+            .ranking,
+            #map {
+                width: calc(100% + 4vw);
+                margin: 0.5rem -2vw 1.5rem;
+            }
+
+            .ranking {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(1.4rem, 1fr));
+                gap: 0.2rem;
+                font: 0.5rem/1.25 monospace;
+            }
+
+            .ranking span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--color-border);
+                border: 1px solid var(--color-border);
+            }
+
+            .ranking .entre {
+                color: black;
+                border-color: black;
+            }
+
+            .ranking .destino {
+                color: var(--color-destino);
+                border-color: var(--color-destino);
+                background: rgba(255, 0, 0, 0.1);
+                font-weight: bold;
+            }
+
+            .ranking .origen {
+                color: var(--color-origen);
+                border-color: var(--color-origen);
+                background: rgba(0, 0, 255, 0.1);
+                font-weight: bold;
+            }
+
+            .grafico {
+                max-width: 500px;
+                margin: 2.5rem auto;
+            }
+
+            #map {
+                height: 400px;
+            }
+
+            .leaflet-attribution-flag {
+                display: none !important;
+            }
+
+            /* Secciones */
+            h2.destino,
+            h2.pasaporte {
+                margin-bottom: 2rem;
+                text-align: center;
+            }
+
+            h2.destino::before,
+            h2.pasaporte::before {
+                content: "";
+                display: block;
+                margin: 5rem auto 1rem;
+                background: no-repeat center / contain;
+            }
+
+            h2.destino::before {
+                width: calc(1rem + 5vw);
+                height: calc(1rem + 5vw);
+                background-image: var(--icono-avion-inclinado);
+            }
+
+            h2.pasaporte::before {
+                width: calc(1rem + 2.5vw);
+                height: calc(1rem + 2.5vw);
+                margin-top: 3rem;
+                background-image: var(--icono-pasaporte);
+            }
+
+            /* =====================================================
+               INFOGRAFÍA INTERACTIVA FAU (SVG)
+               ===================================================== */
+            .infografia-fau {
+                --info-head: #0a0a0a;
+                --info-bg: #eaf1f7;
+                --info-ink: #0f2a47;
+                --info-muted: #4a5f78;
+                --info-ring: #164a85;
+                --info-hub: #fff;
+                --info-accent: #f8a700;
+                --info-on: #0f2a47;
+                --info-sea: #b9d9ef;
+                --info-land: #6dae8c;
+                --info-grid: rgba(15, 42, 71, 0.22);
+                --s1: #1b8ec2;
+                --s2: #1a6faf;
+                --s3: #1b5a99;
+                --s4: #164a85;
+                --s5: #123a6f;
+                --s6: #0e2d58;
+
+                width: calc(100% + 4vw);
+                margin: 2rem -2vw;
+                padding: 1.75rem 1.5rem;
+                background: var(--info-bg);
+                color: var(--info-ink);
+                border-radius: 10px;
+                font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+                container-type: inline-size;
+            }
+
+            .infografia-fau .info-title {
+                margin: 0 0 0.6rem;
+                font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+                font-size: clamp(22px, 4.4cqw, 36px);
+                line-height: 1.12;
+                font-weight: 700;
+                letter-spacing: -0.01em;
+                color: var(--info-head);
+            }
+
+            .infografia-fau .info-sub {
+                margin: 0 0 0.8rem;
+                font-size: clamp(14px, 2.3cqw, 19px);
+                line-height: 1.3;
+                font-weight: 500;
+                color: var(--info-head);
+                text-align: left;
+                hyphens: none;
+            }
+
+            .infografia-fau .info-lead {
+                margin: 0 0 0.8rem;
+                font-size: clamp(12.5px, 1.9cqw, 15.5px);
+                line-height: 1.4;
+                color: var(--info-head);
+                text-align: left;
+                hyphens: none;
+            }
+
+            .infografia-fau .info-hint {
+                margin: 0 0 1.2rem;
+                font-size: clamp(11px, 1.5cqw, 13px);
+                line-height: 1.4;
+                color: var(--info-muted);
+                opacity: 0.85;
+                text-align: left;
+                hyphens: none;
+            }
+
+            .infografia-fau svg {
+                width: 100%;
+                height: auto;
+                display: block;
+                overflow: visible;
+            }
+
+            .infografia-fau .opt {
+                cursor: pointer;
+                outline: none;
+            }
+
+            /* Globo */
+            .infografia-fau .sea {
+                fill: var(--info-sea);
+            }
+            .infografia-fau .land {
+                fill: var(--info-land);
+            }
+            .infografia-fau .grid {
+                fill: none;
+                stroke: var(--info-grid);
+                stroke-width: 1;
+            }
+            .infografia-fau .rim {
+                fill: none;
+                stroke: var(--info-ring);
+                stroke-width: 2;
+            }
+            .infografia-fau .hubbox {
+                fill: var(--info-hub);
+                stroke: var(--info-ring);
+                stroke-width: 1.5;
+                opacity: 0.95;
+            }
+
+            /* Ruta y avión */
+            .infografia-fau .route {
+                fill: none;
+                stroke: var(--info-muted);
+                stroke-width: 1.5;
+                stroke-dasharray: 2 6;
+                stroke-linecap: round;
+            }
+            .infografia-fau .flown {
+                fill: none;
+                stroke: var(--info-accent);
+                stroke-width: 3;
+                stroke-linecap: round;
+                stroke-dasharray: 100;
+                stroke-dashoffset: 100;
+                transition: stroke-dashoffset 1s cubic-bezier(0.5, 0, 0.2, 1);
+            }
+            .infografia-fau .orbit {
+                transform-box: view-box;
+                transform-origin: 200px 320px;
+                transition: transform 1s cubic-bezier(0.5, 0, 0.2, 1);
+                pointer-events: none;
+            }
+            .infografia-fau .plane {
+                fill: var(--info-accent);
+                stroke: var(--info-bg);
+                stroke-width: 1.5;
+                stroke-linejoin: round;
+            }
+
+            /* Segmentos */
+            .infografia-fau .seg {
+                transform-box: view-box;
+                transform-origin: 200px 320px;
+                transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s;
+            }
+            .infografia-fau .seg path {
+                fill: var(--c);
+                transition: fill 0.25s;
+            }
+            .infografia-fau .snum {
+                font-size: 22px;
+                font-weight: 700;
+                fill: #fff;
+                text-anchor: middle;
+                transition: fill 0.25s;
+            }
+            .infografia-fau .cn {
+                stroke: var(--info-muted);
+                stroke-width: 1.5;
+                fill: none;
+                transition: stroke 0.25s;
+            }
+            .infografia-fau .lbl {
+                transform-box: fill-box;
+                transform-origin: left center;
+                transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            }
+            .infografia-fau .lbl rect {
+                fill: transparent;
+                pointer-events: all;
+                transition: fill 0.25s;
+            }
+            .infografia-fau .ttl {
+                font-size: 18px;
+                font-weight: 700;
+                fill: var(--info-ink);
+                transition: fill 0.25s;
+            }
+            .infografia-fau .dsc {
+                font-size: 13px;
+                fill: var(--info-muted);
+                transition: fill 0.25s;
+            }
+            .infografia-fau .has-on .opt:not(.on) .seg {
+                opacity: 0.5;
+            }
+            .infografia-fau .opt.on .seg {
+                transform: scale(1.07);
+            }
+            .infografia-fau .opt.on .seg path {
+                fill: var(--info-accent);
+            }
+            .infografia-fau .opt.on .snum {
+                fill: var(--info-on);
+            }
+            .infografia-fau .opt.on .cn {
+                stroke: var(--info-accent);
+            }
+            .infografia-fau .opt.on .lbl {
+                transform: scale(1.05);
+            }
+            .infografia-fau .opt.on .lbl rect {
+                fill: var(--info-accent);
+            }
+            .infografia-fau .opt.on .ttl,
+            .infografia-fau .opt.on .dsc {
+                fill: var(--info-on);
+            }
+            .infografia-fau .opt:focus-visible .lbl rect {
+                stroke: var(--info-ink);
+                stroke-width: 2;
+            }
+            .infografia-fau .hubt {
+                text-anchor: middle;
+                fill: var(--info-ink);
+            }
+
+            .infografia-fau .info-fuente {
+                margin: 1.5rem 0 0;
+                padding-top: 0.8rem;
+                border-top: 1px solid var(--info-grid);
+                color: var(--info-muted);
+                font-size: 0.8rem;
+                line-height: 1.45;
+                text-align: left;
+                hyphens: none;
+            }
+            .infografia-fau .info-fuente a {
+                color: var(--info-ring);
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .infografia-fau * {
+                    transition: none !important;
+                }
+            }
+
+            /* Pie */
+            footer {
+                margin-top: 10vh;
+                padding: 4rem 0;
+                background: white;
+            }
+
+            dl {
+                font-family: var(--font-sans);
+                font-size: 80%;
+                letter-spacing: 0.025rem;
+            }
+
+            dt {
+                padding-left: 1.2rem;
+                font-weight: 700;
+                background: var(--icono-pulgar) no-repeat 0 0.2rem / 0.9rem;
+            }
+
+            dd {
+                margin-top: 0.25rem;
+                font-size: 90%;
+                color: var(--color-text-light);
+            }
+
+            dd em {
+                font-style: normal;
+                font-weight: 700;
+            }
+        
