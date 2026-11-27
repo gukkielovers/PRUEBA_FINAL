@@ -1,4 +1,3 @@
-
             document.addEventListener("DOMContentLoaded", () => {
                 // Datos: única fuente para textos y cuadrículas
                 const datos = {
