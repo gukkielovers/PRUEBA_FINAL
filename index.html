@@ -3,12 +3,11 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Un buen título</title>
+        <title>Intercambio entre U. Chile y UBA</title>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet"
             rel="stylesheet"
         />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -26,7 +25,7 @@
                 --color-origen: blue;
                 --color-destino: red;
                 --font-sans: "Bricolage Grotesque", Helvetica, Arial, sans-serif;
-                --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+                --font-serif: "IBM Plex Sans", Georgia, "Times New Roman", serif;
 
                 --icono-avion: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 100 100"><path fill="slategray" d="M1005,966 l-270,-112 l-287,256 c-71,62,-133,57,-181,37 l-92,-38 l172,-415 l-277,-115 l-43,104 l-93,-39 l43,-104 c72,-171,224,-230,396,-160 l747,309 c74,32,129,88,129,161 c0,115,-123,167,-244,116 Z M1082,782 l-748,-310 c-80,-34,-153,-24,-205,23 l349,144 l-173,416 c29,12,60,6,84,-15 l319,-305 l336,139 c110,45,146,-47,38,-92 Z" transform="matrix(0.05,0,0,-0.05,20,80)"/></svg>');
                 --icono-avion-inclinado: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 100 100"><path fill="slategray" d="M1005,966 l-270,-112 l-287,256 c-71,62,-133,57,-181,37 l-92,-38 l172,-415 l-277,-115 l-43,104 l-93,-39 l43,-104 c72,-171,224,-230,396,-160 l747,309 c74,32,129,88,129,161 c0,115,-123,167,-244,116 Z M1082,782 l-748,-310 c-80,-34,-153,-24,-205,23 l349,144 l-173,416 c29,12,60,6,84,-15 l319,-305 l336,139 c110,45,146,-47,38,-92 Z" transform="rotate(40 50 50) matrix(0.05,0,0,-0.05,20,80)"/></svg>');
@@ -188,7 +187,9 @@
                 display: block;
                 width: 100%;
                 height: auto;
-            }
+                aspect-ratio: 4 / 3;
+                object-fit: cover;
+                }
 
             figcaption {
                 margin-top: 0.4rem;
@@ -357,17 +358,17 @@
             </p>
             <p>
                 A continuación se <em>muestra</em> lo que deberías saber si tu intención es irte de intercambio a
-                la UBA.
+                la <abbr title="Universidad de Buenos Aires">UBA</abbr>.
             </p>
 
             <figure>
                 <div>
-                    <img src="https://picsum.photos/id/123/500/500" alt="Foto de la Universidad de origen" />
-                    <figcaption>Foto Universidad Origen</figcaption>
+                    <img src="https://fau.uchile.cl/dam/jcr:e2dbae91-b3da-4847-a793-7fae14bf5ed7/frontis%20FAU.jpeg" alt="Foto de la Universidad de origen" />
+                    <figcaption>Facultad de Arquitectura y Urbanismo, U. de Chile.</figcaption>
                 </div>
                 <div>
-                    <img src="https://picsum.photos/id/456/500/500" alt="Foto de la Universidad de destino" />
-                    <figcaption>Foto Universidad Destino</figcaption>
+                    <img src="https://s3-sa-east-1.amazonaws.com/modernabuenosaires/img/obras/galeria/109_1408991254.jpg" alt="Foto de la Universidad de destino" />
+                    <figcaption>Facultad de Arquitectura, Diseño y Urbanismo, UBA.</figcaption>
                 </div>
             </figure>
 
@@ -378,7 +379,7 @@
                 Universidades.
             </p>
             <p>
-                Según tal ranking, un intercambio desde la Universidad de Chile a la UBA
+                Según tal ranking, un intercambio desde la Universidad de Chile a la <abbr title="Universidad de Buenos Aires">UBA</abbr>
                 implica moverse entre los lugares <span data-dato="universidades.origen"></span> y
                 <span data-dato="universidades.destino"></span> del mundo.
             </p>
@@ -387,14 +388,14 @@
             <p>La diferencia de posiciones se explica cuando se consideran las siguientes dimensiones:</p>
 
             <div class="grafico"><canvas id="comparaUniversidades"></canvas></div>
-            <p><mark>[COMPLETAR: Comentario que ayude a leer el gráfico]</mark></p>
+            <p>Más allá de la distancia en el ranking general, ambas universidades comparten un alto prestigio académico y laboral. Para quien realiza el intercambio, el cambio más notorio al pasar de la Universidad de Chile a la <abbr title="Universidad de Buenos Aires">UBA</abbr> se refleja en la experiencia cotidiana: un entorno mucho más diverso en términos de estudiantes y profesores extranjeros, sumado a una relación docente-estudiante más favorable, frente a un perfil chileno más concentrado en el impacto de la investigación por académico.</p>
 
             <h3>Diferencia entre escuelas de origen y destino</h3>
             <p>
                 En su versión publicada el 25 de marzo de 2026, son <span data-dato="escuelas.total"></span> las
                 instituciones consideradas en el Ranking <abbr title="Quacquarelli Symonds">QS</abbr> para el área de
                 Arte y Diseño. Según este ranking, un intercambio desde Diseño de la Universidad de Chile a
-                la UBA implica moverse entre los lugares
+                la <abbr title="Universidad de Buenos Aires">UBA</abbr> implica moverse entre los lugares
                 <span data-dato="escuelas.origen"></span> y <span data-dato="escuelas.destino"></span> del mundo.
             </p>
 
@@ -404,40 +405,50 @@
             <div class="grafico"><canvas id="comparaEscuelas"></canvas></div>
             <p><mark>[COMPLETAR: Comentario que ayude a leer el gráfico]</mark></p>
 
-            <h2 class="destino">La escuela de diseño en <mark>[COMPLETAR: Destino]</mark></h2>
+            <h2 class="destino">La escuela de diseño en Buenos Aires</h2>
 
             <p>
-                <mark>[COMPLETAR: Texto introductorio para presentar la Escuela de Destino]</mark>. Lorem ipsum dolor
-                sit amet, consectetur adipiscing elit. Mauris euismod arcu mi, at luctus lectus condimentum et. Donec
-                accumsan, augue in vestibulum blandit, lacus orci ullamcorper nisi, sit amet mattis eros risus vel
-                metus.
+                Ubicada en el Pabellón III de Ciudad Universitaria, frente al Río de la Plata, la Facultad de Arquitectura, Diseño
+                y Urbanismo (<abbr title="Facultad de Arquitectura, Diseño y Urbanismo">FADU</abbr>) de la Universidad de Buenos
+                Aires es uno de los polos creativos más grandes de Latinoamérica. A diferencia del enfoque integrado de Diseño en la
+                FAU de la Universidad de Chile, la FADU despliega la disciplina en carreras independientes como Diseño Gráfico,
+                Industrial, de Indumentaria, Textil, y de Imagen y Sonido, con múltiples cátedras a elección por asignatura. Su
+                carácter público, masivo y de intensa vida universitaria ofrece un contraste estimulante respecto a Santiago,
+                sumergiendo al estudiante de intercambio en nuevas dinámicas de taller y en la escena cultural porteña.
             </p>
 
             <div id="map"></div>
 
             <figure>
                 <div>
-                    <img src="https://picsum.photos/id/789/200/300" alt="Imagen representativa del lugar de destino 1" />
-                    <figcaption>Pie destino 1</figcaption>
+                    <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/FADU_UBA_%28aula%29.JPG/1920px-FADU_UBA_%28aula%29.JPG?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=thumbnail" alt="Imagen representativa del lugar de destino 1" />
+                    <figcaption>Salon de Clases</figcaption>
                 </div>
                 <div>
-                    <img src="https://picsum.photos/id/1/200/300" alt="Imagen representativa del lugar de destino 2" />
-                    <figcaption>Pie destino 2</figcaption>
+                    <img src="https://aerocene.org/wp-content/uploads/2024/05/post_evento_fadu7-1024x768.jpg" alt="Imagen representativa del lugar de destino 2" />
+                    <figcaption>Patio Central</figcaption>
                 </div>
             </figure>
 
             <p>
-                <mark>[COMPLETAR: cierre de presentación de la Escuela de Destino]</mark>. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Mauris euismod arcu mi, at luctus lectus condimentum et. Donec accumsan,
-                augue in vestibulum blandit, lacus orci ullamcorper nisi, sit amet mattis eros risus vel metus:
+Más allá del prestigio académico, adaptarse a la escala y al ritmo de la FADU requiere cierta planificación. Si estás
+    evaluando postular a este destino desde la Universidad de Chile, conviene tener en cuenta cinco aspectos clave:
             </p>
 
             <ul>
-                <li>Presenta algo a tener en cuenta</li>
-                <li>Presenta algo a tener en cuenta</li>
-                <li>Presenta algo a tener en cuenta</li>
-                <li>Presenta algo a tener en cuenta</li>
-                <li>Presenta algo a tener en cuenta</li>
+                <li><strong>Elección de cátedras:</strong> Una misma asignatura suele dictarse en varias cátedras paralelas con
+        enfoques muy distintos; conviene revisar sus programas y trabajos previos antes de inscribir ramos.</li>
+                <li><strong>Especialización por carrera:</strong> Al estar el diseño dividido en carreras separadas (Gráfico,
+        Industrial, Indumentaria, Textil e Imagen y Sonido), podrás cursar talleres más específicos y profundos en tu
+        área de interés.</li>
+                <li><strong>Calendario cuatrimestral:</strong> El año académico se divide en dos cuatrimestres (marzo-julio y
+        agosto-noviembre), con instancias de entregas y exámenes finales que requieren coordinar bien las fechas de
+        regreso a Chile.</li>
+                <li><strong>Traslados a Ciudad Universitaria:</strong> El campus está en el barrio de Núñez, alejado del centro
+        porteño; necesitarás la tarjeta SUBE y contemplar tiempos de viaje en colectivo o en el tren Belgrano Norte.</li>
+                <li><strong>Escala masiva y autogestión:</strong> Los cursos son numerosos y exigen autonomía, pero el edificio
+        funciona casi como una ciudad propia, con locales de ploteo, librerías técnicas y talleres disponibles en el
+        mismo Pabellón III.</li>
             </ul>
 
             <hr />
@@ -502,7 +513,7 @@
                     </dd>
                     <dd>
                         <em>Uso de IA:</em> En este trabajo de Diseño y Visualización de Información se utilizaron
-                        herramientas de inteligencia artificial generativa. [Especificar herramienta/s.] Estas fueron
+                        herramientas de inteligencia artificial generativa. <mark>[Especificar herramienta/s.]</mark>Estas fueron
                         empleadas en [indicar etapas o secciones]. [Si aplica: los prompts utilizados y la metodología
                         de integración se describen en la sección correspondiente.] Todo el contenido fue revisado y
                         validado por <a href="https://github.com/evorakie" rel="me">Sayen Padilla</a> y <a href="https://github.com/ronnistp" rel="me">Veronica Soto</a>,
@@ -510,10 +521,10 @@
                     </dd>
                     <dd>
                         <em>Recomendación:</em> Revisa otros destinos de intercambio, tales como:
-                        <a href="#" target="_blank" rel="noopener">otra</a>,
-                        <a href="#" target="_blank" rel="noopener">otra</a>,
-                        <a href="#" target="_blank" rel="noopener">otra</a> u
-                        <a href="#" target="_blank" rel="noopener">otra</a>.
+                        <a href="#" target="_blank" rel="noopener">Politécnico de Milán</a>,
+                        <a href="https://carolmabel.github.io/evaluacion-final/" target="_blank" rel="noopener">Universidad de São Paulo</a>,
+                        <a href="#" target="_blank" rel="noopener">Universidad Nacional Autónoma de México</a> u el
+                        <a href="#" target="_blank" rel="noopener">Tecnológico de Monterrey</a>.
                     </dd>
                 </dl>
             </div>
@@ -523,8 +534,8 @@
             document.addEventListener("DOMContentLoaded", () => {
                 // Datos: única fuente para textos y cuadrículas
                 const datos = {
-                    universidades: { total: 1504, origen: 186, destino: 133 },
-                    escuelas: { total: 303, origen: 155, destino: 97 },
+                    universidades: { total: 1504, origen: 185, destino: 84 },
+                    escuelas: { total: 303, origen: 155, destino: 74 },
                 };
 
                 document.querySelectorAll("[data-dato]").forEach((el) => {
@@ -552,17 +563,25 @@
                     new Chart(document.getElementById(id), {
                         type: "radar",
                         data: {
-                            labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
+                            labels: [
+                                     'Academic Reputation',
+                                     'Employer Reputation',
+                                     'Faculty Student Ratio',
+                                     'Citations per Faculty',
+                                     'International Faculty',
+                                     'International Students',
+                                     'International Research Network'
+                                    ],
                             datasets: [
                                 {
-                                    label: "Origen",
-                                    data: [65, 59, 80, 81, 56, 55, 40],
+                                    label: 'Origen (U.Chile)',
+                                    data: [92.0, 85.1, 9.9, 16.0, 10.6, 8.2, 76.8],
                                     borderColor: "rgb(54, 162, 235)",
                                     backgroundColor: "rgba(54, 162, 235, 0.2)",
                                 },
                                 {
-                                    label: "Destino",
-                                    data: [28, 48, 40, 19, 96, 27, 100],
+                                    label: 'Destino (UBA)',
+                                    data: [98.1, 91.7, 85.3, 2.1, 71.1, 81.8, 75.0],
                                     borderColor: "rgb(255, 99, 132)",
                                     backgroundColor: "rgba(255, 99, 132, 0.2)",
                                 },
@@ -574,16 +593,16 @@
                 radar("comparaEscuelas");
 
                 // Mapa
-                const map = L.map("map").setView([-33.4422, -70.638017], 3);
+                const map = L.map("map").setView([-34.54125, -58.443944], 3);
 
                 L.tileLayer(
                     "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
                     { maxZoom: 16, attribution: "Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ" }
                 ).addTo(map);
 
-                L.marker([-33.4422, -70.638017])
+                L.marker([-34.54125, -58.443944])
                     .addTo(map)
-                    .bindPopup("<b>Universidad de Chile</b><br />Facultad de Arquitectura y Urbanismo.")
+                    .bindPopup("<b>Universidad de Buenos Aires</b><br />Facultad de Arquitectura, Diseño y Urbanismo.")
                     .openPopup();
             });
         </script>
