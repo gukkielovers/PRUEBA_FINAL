@@ -22,8 +22,8 @@
                 --color-text-dark: rgb(30, 30, 30);
                 --color-text-light: rgb(90, 90, 90);
                 --color-border: silver;
-                --color-origen: blue;
-                --color-destino: red;
+                --color-origen: #17177d;
+                --color-destino: #f8a700;
                 --font-sans: "Bricolage Grotesque", Helvetica, Arial, sans-serif;
                 --font-serif: "IBM Plex Sans", Georgia, "Times New Roman", serif;
 
@@ -364,11 +364,11 @@
             <figure>
                 <div>
                     <img src="https://fau.uchile.cl/dam/jcr:e2dbae91-b3da-4847-a793-7fae14bf5ed7/frontis%20FAU.jpeg" alt="Foto de la Universidad de origen" />
-                    <figcaption>Facultad de Arquitectura y Urbanismo, U. de Chile.</figcaption>
+                    <figcaption>Facultad de Arquitectura y Urbanismo (U. de Chile).</figcaption>
                 </div>
                 <div>
                     <img src="https://s3-sa-east-1.amazonaws.com/modernabuenosaires/img/obras/galeria/109_1408991254.jpg" alt="Foto de la Universidad de destino" />
-                    <figcaption>Facultad de Arquitectura, Diseño y Urbanismo, UBA.</figcaption>
+                    <figcaption>Facultad de Arquitectura, Diseño y Urbanismo (UBA).</figcaption>
                 </div>
             </figure>
 
@@ -403,7 +403,11 @@
             <p>La diferencia de posiciones se explica cuando se consideran las siguientes dimensiones:</p>
 
             <div class="grafico"><canvas id="comparaEscuelas"></canvas></div>
-            <p><mark>[COMPLETAR: Comentario que ayude a leer el gráfico]</mark></p>
+            <p>En el área específica de Arte y Diseño, ambas escuelas muestran una valoración laboral muy pareja, con una
+    reputación entre empleadores sólida y competitiva a nivel regional. La distancia que explica la ventaja de la
+    <abbr title="Universidad de Buenos Aires">UBA</abbr> en el puntaje general se concentra principalmente en la
+    reputación académica, lo que refleja un mayor reconocimiento internacional de su escuela entre pares e
+    investigadores de la disciplina.</p>
 
             <h2 class="destino">La escuela de diseño en Buenos Aires</h2>
 
@@ -513,15 +517,15 @@ Más allá del prestigio académico, adaptarse a la escala y al ritmo de la FADU
                     </dd>
                     <dd>
                         <em>Uso de IA:</em> En este trabajo de Diseño y Visualización de Información se utilizaron
-                        herramientas de inteligencia artificial generativa. <mark>[Especificar herramienta/s.]</mark>Estas fueron
-                        empleadas en [indicar etapas o secciones]. [Si aplica: los prompts utilizados y la metodología
-                        de integración se describen en la sección correspondiente.] Todo el contenido fue revisado y
-                        validado por <a href="https://github.com/evorakie" rel="me">Sayen Padilla</a> y <a href="https://github.com/ronnistp" rel="me">Veronica Soto</a>,
+                        herramientas de inteligencia artificial generativa. Claude y Gemini. Estas fueron empleadas en
+                        el desarrollo de la infografía interactiva, así como en la corrección de textos y la
+                        organización del código. Todo el contenido fue revisado y validado por 
+                        <a href="https://github.com/evorakie" rel="me">Sayen Padilla</a> y <a href="https://github.com/ronnistp" rel="me">Veronica Soto</a>,
                         quienes asumimos plena responsabilidad sobre el trabajo presentado.
                     </dd>
                     <dd>
                         <em>Recomendación:</em> Revisa otros destinos de intercambio, tales como:
-                        <a href="#" target="_blank" rel="noopener">Politécnico de Milán</a>,
+                        <a href="https://bastich03.github.io/Clase_15/" target="_blank" rel="noopener">Politécnico de Milán</a>,
                         <a href="https://carolmabel.github.io/evaluacion-final/" target="_blank" rel="noopener">Universidad de São Paulo</a>,
                         <a href="#" target="_blank" rel="noopener">Universidad Nacional Autónoma de México</a> u el
                         <a href="#" target="_blank" rel="noopener">Tecnológico de Monterrey</a>.
@@ -559,38 +563,54 @@ Más allá del prestigio académico, adaptarse a la escala y al ritmo de la FADU
                 ranking("escuelas", datos.escuelas);
 
                 // Gráficos de radar
-                const radar = (id) =>
-                    new Chart(document.getElementById(id), {
-                        type: "radar",
-                        data: {
-                            labels: [
-                                     'Academic Reputation',
-                                     'Employer Reputation',
-                                     'Faculty Student Ratio',
-                                     'Citations per Faculty',
-                                     'International Faculty',
-                                     'International Students',
-                                     'International Research Network'
-                                    ],
-                            datasets: [
-                                {
-                                    label: 'Origen (U.Chile)',
-                                    data: [92.0, 85.1, 9.9, 16.0, 10.6, 8.2, 76.8],
-                                    borderColor: "rgb(54, 162, 235)",
-                                    backgroundColor: "rgba(54, 162, 235, 0.2)",
-                                },
-                                {
-                                    label: 'Destino (UBA)',
-                                    data: [98.1, 91.7, 85.3, 2.1, 71.1, 81.8, 75.0],
-                                    borderColor: "rgb(255, 99, 132)",
-                                    backgroundColor: "rgba(255, 99, 132, 0.2)",
-                                },
-                            ],
-                        },
-                    });
+               // Gráficos de radar
+const radar = (id, { labels, origen, destino }) =>
+    new Chart(document.getElementById(id), {
+        type: "radar",
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: "Origen (U.Chile)",
+                    data: origen,
+                    borderColor: "rgb(23, 23, 125)",
+                    backgroundColor: "rgba(54, 88, 235, 0.2)",
+                },
+                {
+                    label: "Destino (UBA)",
+                    data: destino,
+                    borderColor: "rgb(248, 167, 0)",
+                    backgroundColor: "rgba(255, 215, 99, 0.29)",
+                },
+            ],
+        },
+    });
 
-                radar("comparaUniversidades");
-                radar("comparaEscuelas");
+// 1. Gráfico de Universidades (QS World University Rankings)
+                   radar("comparaUniversidades", {
+                    labels: [
+        "Academic Reputation",
+        "Employer Reputation",
+        "Faculty Student Ratio",
+        "Citations per Faculty",
+        "International Faculty",
+        "International Students",
+        "International Research Network",
+    ],
+    origen: [92.0, 85.1, 9.9, 16.0, 10.6, 8.2, 76.8],
+    destino: [98.1, 91.7, 85.3, 2.1, 71.1, 81.8, 75.0],
+});
+
+// 2. Gráfico de Escuelas (QS by Subject: Art & Design)
+radar("comparaEscuelas", {
+    labels: [
+        "Overall Score",
+        "Academic Reputation",
+        "Employer Reputation",
+    ],
+    origen: [55.1, 52.5, 78.5], // Reemplaza con los datos reales de U. de Chile
+    destino: [65.7, 63.9, 81.6], // Reemplaza con los datos reales de UBA
+});
 
                 // Mapa
                 const map = L.map("map").setView([-34.54125, -58.443944], 3);
