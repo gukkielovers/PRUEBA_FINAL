@@ -5,325 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Intercambio entre U. Chile y UBA</title>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet"
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
             rel="stylesheet"
         />
+        
+        <link rel="stylesheet" href="style.css">
+        
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7"></script>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-        <style>
-            :root {
-                --color-bg: #eaeaea;
-                --color-accent: slategray;
-                --color-text: rgb(60, 60, 60);
-                --color-text-dark: rgb(30, 30, 30);
-                --color-text-light: rgb(90, 90, 90);
-                --color-border: silver;
-                --color-origen: #17177d;
-                --color-destino: #f8a700;
-                --font-sans: "Bricolage Grotesque", Helvetica, Arial, sans-serif;
-                --font-serif: "IBM Plex Sans", Georgia, "Times New Roman", serif;
-
-                --icono-avion: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 100 100"><path fill="slategray" d="M1005,966 l-270,-112 l-287,256 c-71,62,-133,57,-181,37 l-92,-38 l172,-415 l-277,-115 l-43,104 l-93,-39 l43,-104 c72,-171,224,-230,396,-160 l747,309 c74,32,129,88,129,161 c0,115,-123,167,-244,116 Z M1082,782 l-748,-310 c-80,-34,-153,-24,-205,23 l349,144 l-173,416 c29,12,60,6,84,-15 l319,-305 l336,139 c110,45,146,-47,38,-92 Z" transform="matrix(0.05,0,0,-0.05,20,80)"/></svg>');
-                --icono-avion-inclinado: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 100 100"><path fill="slategray" d="M1005,966 l-270,-112 l-287,256 c-71,62,-133,57,-181,37 l-92,-38 l172,-415 l-277,-115 l-43,104 l-93,-39 l43,-104 c72,-171,224,-230,396,-160 l747,309 c74,32,129,88,129,161 c0,115,-123,167,-244,116 Z M1082,782 l-748,-310 c-80,-34,-153,-24,-205,23 l349,144 l-173,416 c29,12,60,6,84,-15 l319,-305 l336,139 c110,45,146,-47,38,-92 Z" transform="rotate(40 50 50) matrix(0.05,0,0,-0.05,20,80)"/></svg>');
-                --icono-pasaporte: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="slategray" viewBox="0 0 16 16"><path d="M8 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6M6 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0m-.5 4a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/><path d="M3.232 1.776A1.5 1.5 0 0 0 2 3.252v10.95c0 .445.191.838.49 1.11.367.422.908.688 1.51.688h8a2 2 0 0 0 2-2V4a2 2 0 0 0-1-1.732v-.47A1.5 1.5 0 0 0 11.232.321l-8 1.454ZM4 3h8a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"/></svg>');
-                --icono-pulgar: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="slategray" viewBox="0 0 16 16"><path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a10 10 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733q.086.18.138.363c.077.27.113.567.113.856s-.036.586-.113.856c-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.2 3.2 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.8 4.8 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/></svg>');
-            }
-
-            *,
-            *::before,
-            *::after {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-            }
-
-            body {
-                font-family: var(--font-serif);
-                font-size: 1.1rem;
-                line-height: 1.6;
-                color: var(--color-text);
-                background: linear-gradient(to bottom, var(--color-bg), white);
-            }
-
-            a {
-                color: var(--color-text-dark);
-                text-decoration: underline dotted;
-                text-underline-offset: 3px;
-            }
-
-            a:hover {
-                text-decoration-style: solid;
-            }
-
-            p {
-                margin-bottom: 1rem;
-                text-align: justify;
-                text-align-last: left;
-                letter-spacing: 0.01em;
-                hyphens: auto;
-                text-wrap: pretty;
-            }
-
-            em {
-                font-weight: 500;
-            }
-
-            abbr {
-                font-size: 0.85em;
-                text-decoration: none;
-                cursor: help;
-            }
-
-            mark {
-                background: yellow;
-                color: inherit;
-            }
-
-            ul,
-            ol {
-                margin-bottom: 1rem;
-                list-style-position: inside;
-            }
-
-            li {
-                margin-bottom: 0.25rem;
-            }
-
-            h1,
-            h2,
-            h3,
-            h4,
-            h5 {
-                font-family: var(--font-sans);
-                font-weight: 500;
-                line-height: 1.2;
-            }
-
-            h3 + p {
-                margin-top: 1rem;
-            }
-
-            hr {
-                margin: 2rem 0;
-                border: 2px solid #ccc;
-            }
-
-            .container {
-                width: 90%;
-                max-width: 700px;
-                margin: 0 auto;
-            }
-
-            /* Portada */
-            header {
-                margin: 3rem 0 7rem;
-                text-align: center;
-            }
-
-            header h1::before {
-                content: "";
-                display: block;
-                width: calc(1.5rem + 5vw);
-                height: calc(1.5rem + 5vw);
-                margin: 0 auto;
-                background: var(--icono-avion) no-repeat center / contain;
-            }
-
-            header h1,
-            header h2,
-            header h3 {
-                color: var(--color-accent);
-            }
-
-            header h1 {
-                font-size: calc(1.1rem + 1.8vw);
-                font-weight: 600;
-                letter-spacing: 0.1rem;
-                line-height: 1.1;
-                text-transform: uppercase;
-            }
-
-            header h2 {
-                font-size: calc(1.1rem + 1.75vw);
-            }
-
-            header h3 {
-                font-size: calc(1.1rem + 1.15vw);
-            }
-
-            header h4 {
-                margin-top: 1rem;
-                font-size: 1rem;
-            }
-
-            header h5 {
-                margin: 1rem 0 2rem;
-                font-size: 0.8rem;
-                letter-spacing: 0.05rem;
-            }
-
-            header + p {
-                font-size: 120%;
-                font-weight: 300;
-            }
-
-            /* Figuras */
-            figure {
-                display: flex;
-                gap: 0.5rem;
-                width: calc(100% + 4vw);
-                margin: 0.5rem -2vw 2rem;
-            }
-
-            figure > div {
-                flex: 1;
-            }
-
-            figure img {
-                display: block;
-                width: 100%;
-                height: auto;
-                aspect-ratio: 4 / 3;
-                object-fit: cover;
-                }
-
-            figcaption {
-                margin-top: 0.4rem;
-                font-size: 0.8rem;
-                color: #666;
-                text-indent: 2vw;
-            }
-
-            @media (orientation: portrait) {
-                figure {
-                    flex-direction: column;
-                }
-            }
-
-
-            h3{margin-top:3rem;}
-
-            /* Gráficos, rankings y mapa */
-            .ranking,
-            #map {
-                width: calc(100% + 4vw);
-                margin: 0.5rem -2vw 1.5rem;
-            }
-
-            .ranking {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(1.4rem, 1fr));
-                gap: 0.2rem;
-                font: 0.5rem/1.25 monospace;
-            }
-
-            .ranking span {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: var(--color-border);
-                border: 1px solid var(--color-border);
-            }
-
-            .ranking .entre {
-                color: black;
-                border-color: black;
-            }
-
-            .ranking .destino {
-                color: var(--color-destino);
-                border-color: var(--color-destino);
-                background: rgba(255, 0, 0, 0.1);
-                font-weight: bold;
-            }
-
-            .ranking .origen {
-                color: var(--color-origen);
-                border-color: var(--color-origen);
-                background: rgba(0, 0, 255, 0.1);
-                font-weight: bold;
-            }
-
-            .grafico {
-                max-width: 500px;
-                margin: 2.5rem auto;
-            }
-
-            #map {
-                height: 400px;
-            }
-
-            .leaflet-attribution-flag {
-                display: none !important;
-            }
-
-            /* Secciones */
-            h2.destino,
-            h2.pasaporte {
-                margin-bottom: 2rem;
-                text-align: center;
-            }
-
-            h2.destino::before,
-            h2.pasaporte::before {
-                content: "";
-                display: block;
-                margin: 5rem auto 1rem;
-                background: no-repeat center / contain;
-            }
-
-            h2.destino::before {
-                width: calc(1rem + 5vw);
-                height: calc(1rem + 5vw);
-                background-image: var(--icono-avion-inclinado);
-            }
-
-            h2.pasaporte::before {
-                width: calc(1rem + 2.5vw);
-                height: calc(1rem + 2.5vw);
-                margin-top: 3rem;
-                background-image: var(--icono-pasaporte);
-            }
-
-            .infografia {
-                display: block;
-                width: 100%;
-            }
-
-            /* Pie */
-            footer {
-                margin-top: 10vh;
-                padding: 4rem 0;
-                background: white;
-            }
-
-            dl {
-                font-family: var(--font-sans);
-                font-size: 80%;
-                letter-spacing: 0.025rem;
-            }
-
-            dt {
-                padding-left: 1.2rem;
-                font-weight: 700;
-                background: var(--icono-pulgar) no-repeat 0 0.2rem / 0.9rem;
-            }
-
-            dd {
-                margin-top: 0.25rem;
-                font-size: 90%;
-                color: var(--color-text-light);
-            }
-
-            dd em {
-                font-style: normal;
-                font-weight: 700;
-            }
-        </style>
+        
     </head>
     <body>
         <div class="container">
@@ -331,23 +26,38 @@
                 <h1>Intercambio</h1>
                 <h2>un viaje no tan largo</h2>
                 <h3>desde la Universidad de Chile</h3>
-                <h4>Por <a href="https://github.com/evorakie" target="_blank" rel="noopener">Sayen Padilla</a> y <a href="https://github.com/ronnistp" target="_blank" rel="noopener">Veronica Soto</a></h4>
+                <h4>
+                    Por <a href="https://github.com/evorakie" target="_blank" rel="noopener">Sayen Padilla</a> y
+                    <a href="https://github.com/ronnistp" target="_blank" rel="noopener">Veronica Soto</a>
+                </h4>
                 <h5>27 de noviembre, 2026</h5>
             </header>
 
             <p>
                 Las y los estudiantes de Diseño de la Universidad de Chile contamos con opciones de intercambio a
-                instituciones tan relevantes como el <a href="https://www.polimi.it/" target="_blank" rel="noopener">Politécnico de Milán</a>, la
-                <a href="https://www.uba.ar/" target="_blank" rel="noopener"><abbr title="Universidad de Buenos Aires">UBA</abbr></a>, la
+                instituciones tan relevantes como el
+                <a href="https://www.polimi.it/" target="_blank" rel="noopener">Politécnico de Milán</a>, la
+                <a href="https://www.uba.ar/" target="_blank" rel="noopener"
+                    ><abbr title="Universidad de Buenos Aires">UBA</abbr></a
+                >, la
                 <a href="https://www5.usp.br/" target="_blank" rel="noopener">Universidad de São Paulo</a>, la
-                <a href="https://www.unam.mx/" target="_blank" rel="noopener"><abbr title="Universidad Nacional Autónoma de México">UNAM</abbr></a> y el
-                <a href="https://tec.mx/es?srsltid=AYCX9vJRXDR4D1TSWwehuT4O0hKksTrW2BOgA_RblthWcv6x4oxhWNo5" target="_blank" rel="noopener">Tecnológico de Monterrey</a>.
+                <a href="https://www.unam.mx/" target="_blank" rel="noopener"
+                    ><abbr title="Universidad Nacional Autónoma de México">UNAM</abbr></a
+                >
+                y el
+                <a
+                    href="https://tec.mx/es?srsltid=AYCX9vJRXDR4D1TSWwehuT4O0hKksTrW2BOgA_RblthWcv6x4oxhWNo5"
+                    target="_blank"
+                    rel="noopener"
+                    >Tecnológico de Monterrey</a
+                >.
             </p>
             <p>
                 Tales instituciones y la nuestra <em>demuestran</em> su relevancia <em>apareciendo</em> en las métricas
                 del
-                <a href="https://www.topuniversities.com/university-rankings" target="_blank" rel="noopener">Ranking <abbr title="Quacquarelli Symonds">QS</abbr></a>, un
-                sistema londinense que opera en dos vertientes:
+                <a href="https://www.topuniversities.com/university-rankings" target="_blank" rel="noopener"
+                    >Ranking <abbr title="Quacquarelli Symonds">QS</abbr></a
+                >, un sistema londinense que opera en dos vertientes:
                 <em><abbr title="Quacquarelli Symonds">QS</abbr> World University Rankings</em>, centrada en el
                 desempeño institucional general, y
                 <em><abbr title="Quacquarelli Symonds">QS</abbr> World University Rankings by Subject</em>, que en
@@ -357,45 +67,59 @@
                 <abbr title="Quacquarelli Symonds">QS</abbr>.
             </p>
             <p>
-                A continuación se <em>muestra</em> lo que deberías saber si tu intención es irte de intercambio a
-                la <abbr title="Universidad de Buenos Aires">UBA</abbr>.
+                A continuación se <em>muestra</em> lo que deberías saber si tu intención es irte de intercambio a la
+                <abbr title="Universidad de Buenos Aires">UBA</abbr>.
             </p>
 
             <figure>
                 <div>
-                    <img src="https://fau.uchile.cl/dam/jcr:e2dbae91-b3da-4847-a793-7fae14bf5ed7/frontis%20FAU.jpeg" alt="Foto de la Universidad de origen" />
+                    <img
+                        src="https://fau.uchile.cl/dam/jcr:e2dbae91-b3da-4847-a793-7fae14bf5ed7/frontis%20FAU.jpeg"
+                        alt="Foto de la Universidad de origen"
+                    />
                     <figcaption>Facultad de Arquitectura y Urbanismo (U. de Chile).</figcaption>
                 </div>
                 <div>
-                    <img src="https://s3-sa-east-1.amazonaws.com/modernabuenosaires/img/obras/galeria/109_1408991254.jpg" alt="Foto de la Universidad de destino" />
+                    <img
+                        src="https://s3-sa-east-1.amazonaws.com/modernabuenosaires/img/obras/galeria/109_1408991254.jpg"
+                        alt="Foto de la Universidad de destino"
+                    />
                     <figcaption>Facultad de Arquitectura, Diseño y Urbanismo (UBA).</figcaption>
                 </div>
             </figure>
 
             <h3>Diferencia entre universidades de origen y destino</h3>
             <p>
-                En su versión publicada el 18 de junio de 2026, son <span data-dato="universidades.total"></span>
-                las instituciones que <em>cuentan</em> en el Ranking <abbr title="Quacquarelli Symonds">QS</abbr> para
+                En su versión publicada el 18 de junio de 2026, son <span data-dato="universidades.total"></span> las
+                instituciones que <em>cuentan</em> en el Ranking <abbr title="Quacquarelli Symonds">QS</abbr> para
                 Universidades.
             </p>
             <p>
-                Según tal ranking, un intercambio desde la Universidad de Chile a la <abbr title="Universidad de Buenos Aires">UBA</abbr>
-                implica moverse entre los lugares <span data-dato="universidades.origen"></span> y
-                <span data-dato="universidades.destino"></span> del mundo.
+                Según tal ranking, un intercambio desde la Universidad de Chile a la
+                <abbr title="Universidad de Buenos Aires">UBA</abbr> implica moverse entre los lugares
+                <span data-dato="universidades.origen"></span> y <span data-dato="universidades.destino"></span> del
+                mundo.
             </p>
 
             <div id="universidades" class="ranking"></div>
             <p>La diferencia de posiciones se explica cuando se consideran las siguientes dimensiones:</p>
 
             <div class="grafico"><canvas id="comparaUniversidades"></canvas></div>
-            <p>Más allá de la distancia en el ranking general, ambas universidades comparten un alto prestigio académico y laboral. Para quien realiza el intercambio, el cambio más notorio al pasar de la Universidad de Chile a la <abbr title="Universidad de Buenos Aires">UBA</abbr> se refleja en la experiencia cotidiana: un entorno mucho más diverso en términos de estudiantes y profesores extranjeros, sumado a una relación docente-estudiante más favorable, frente a un perfil chileno más concentrado en el impacto de la investigación por académico.</p>
+            <p>
+                Más allá de la distancia en el ranking general, ambas universidades comparten un alto prestigio
+                académico y laboral. Para quien realiza el intercambio, el cambio más notorio al pasar de la
+                Universidad de Chile a la <abbr title="Universidad de Buenos Aires">UBA</abbr> se refleja en la
+                experiencia cotidiana: un entorno mucho más diverso en términos de estudiantes y profesores
+                extranjeros, sumado a una relación docente-estudiante más favorable, frente a un perfil chileno más
+                concentrado en el impacto de la investigación por académico.
+            </p>
 
             <h3>Diferencia entre escuelas de origen y destino</h3>
             <p>
                 En su versión publicada el 25 de marzo de 2026, son <span data-dato="escuelas.total"></span> las
                 instituciones consideradas en el Ranking <abbr title="Quacquarelli Symonds">QS</abbr> para el área de
-                Arte y Diseño. Según este ranking, un intercambio desde Diseño de la Universidad de Chile a
-                la <abbr title="Universidad de Buenos Aires">UBA</abbr> implica moverse entre los lugares
+                Arte y Diseño. Según este ranking, un intercambio desde Diseño de la Universidad de Chile a la
+                <abbr title="Universidad de Buenos Aires">UBA</abbr> implica moverse entre los lugares
                 <span data-dato="escuelas.origen"></span> y <span data-dato="escuelas.destino"></span> del mundo.
             </p>
 
@@ -403,56 +127,78 @@
             <p>La diferencia de posiciones se explica cuando se consideran las siguientes dimensiones:</p>
 
             <div class="grafico"><canvas id="comparaEscuelas"></canvas></div>
-            <p>En el área específica de Arte y Diseño, ambas escuelas muestran una valoración laboral muy pareja, con una
-    reputación entre empleadores sólida y competitiva a nivel regional. La distancia que explica la ventaja de la
-    <abbr title="Universidad de Buenos Aires">UBA</abbr> en el puntaje general se concentra principalmente en la
-    reputación académica, lo que refleja un mayor reconocimiento internacional de su escuela entre pares e
-    investigadores de la disciplina.</p>
+            <p>
+                En el área específica de Arte y Diseño, ambas escuelas muestran una valoración laboral muy pareja, con
+                una reputación entre empleadores sólida y competitiva a nivel regional. La distancia que explica la
+                ventaja de la <abbr title="Universidad de Buenos Aires">UBA</abbr> en el puntaje general se concentra
+                principalmente en la reputación académica, lo que refleja un mayor reconocimiento internacional de su
+                escuela entre pares e investigadores de la disciplina.
+            </p>
 
             <h2 class="destino">La escuela de diseño en Buenos Aires</h2>
 
             <p>
-                Ubicada en el Pabellón III de Ciudad Universitaria, frente al Río de la Plata, la Facultad de Arquitectura, Diseño
-                y Urbanismo (<abbr title="Facultad de Arquitectura, Diseño y Urbanismo">FADU</abbr>) de la Universidad de Buenos
-                Aires es uno de los polos creativos más grandes de Latinoamérica. A diferencia del enfoque integrado de Diseño en la
-                FAU de la Universidad de Chile, la FADU despliega la disciplina en carreras independientes como Diseño Gráfico,
-                Industrial, de Indumentaria, Textil, y de Imagen y Sonido, con múltiples cátedras a elección por asignatura. Su
-                carácter público, masivo y de intensa vida universitaria ofrece un contraste estimulante respecto a Santiago,
-                sumergiendo al estudiante de intercambio en nuevas dinámicas de taller y en la escena cultural porteña.
+                Ubicada en el Pabellón III de Ciudad Universitaria, frente al Río de la Plata, la Facultad de
+                Arquitectura, Diseño y Urbanismo (<abbr title="Facultad de Arquitectura, Diseño y Urbanismo">FADU</abbr
+                >) de la Universidad de Buenos Aires es uno de los polos creativos más grandes de Latinoamérica. A
+                diferencia del enfoque integrado de Diseño en la FAU de la Universidad de Chile, la FADU despliega la
+                disciplina en carreras independientes como Diseño Gráfico, Industrial, de Indumentaria, Textil, y de
+                Imagen y Sonido, con múltiples cátedras a elección por asignatura. Su carácter público, masivo y de
+                intensa vida universitaria ofrece un contraste estimulante respecto a Santiago, sumergiendo al
+                estudiante de intercambio en nuevas dinámicas de taller y en la escena cultural porteña.
             </p>
 
             <div id="map"></div>
 
             <figure>
                 <div>
-                    <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/FADU_UBA_%28aula%29.JPG/1920px-FADU_UBA_%28aula%29.JPG?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=thumbnail" alt="Imagen representativa del lugar de destino 1" />
-                    <figcaption>Salon de Clases</figcaption>
+                    <img
+                        src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/FADU_UBA_%28aula%29.JPG/1920px-FADU_UBA_%28aula%29.JPG?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=thumbnail"
+                        alt="Imagen representativa del lugar de destino 1"
+                    />
+                    <figcaption>Salón de Clases</figcaption>
                 </div>
                 <div>
-                    <img src="https://aerocene.org/wp-content/uploads/2024/05/post_evento_fadu7-1024x768.jpg" alt="Imagen representativa del lugar de destino 2" />
+                    <img
+                        src="https://aerocene.org/wp-content/uploads/2024/05/post_evento_fadu7-1024x768.jpg"
+                        alt="Imagen representativa del lugar de destino 2"
+                    />
                     <figcaption>Patio Central</figcaption>
                 </div>
             </figure>
 
             <p>
-Más allá del prestigio académico, adaptarse a la escala y al ritmo de la FADU requiere cierta planificación. Si estás
-    evaluando postular a este destino desde la Universidad de Chile, conviene tener en cuenta cinco aspectos clave:
+                Más allá del prestigio académico, adaptarse a la escala y al ritmo de la FADU requiere cierta
+                planificación. Si estás evaluando postular a este destino desde la Universidad de Chile, conviene tener
+                en cuenta cinco aspectos clave:
             </p>
 
             <ul>
-                <li><strong>Elección de cátedras:</strong> Una misma asignatura suele dictarse en varias cátedras paralelas con
-        enfoques muy distintos; conviene revisar sus programas y trabajos previos antes de inscribir ramos.</li>
-                <li><strong>Especialización por carrera:</strong> Al estar el diseño dividido en carreras separadas (Gráfico,
-        Industrial, Indumentaria, Textil e Imagen y Sonido), podrás cursar talleres más específicos y profundos en tu
-        área de interés.</li>
-                <li><strong>Calendario cuatrimestral:</strong> El año académico se divide en dos cuatrimestres (marzo-julio y
-        agosto-noviembre), con instancias de entregas y exámenes finales que requieren coordinar bien las fechas de
-        regreso a Chile.</li>
-                <li><strong>Traslados a Ciudad Universitaria:</strong> El campus está en el barrio de Núñez, alejado del centro
-        porteño; necesitarás la tarjeta SUBE y contemplar tiempos de viaje en colectivo o en el tren Belgrano Norte.</li>
-                <li><strong>Escala masiva y autogestión:</strong> Los cursos son numerosos y exigen autonomía, pero el edificio
-        funciona casi como una ciudad propia, con locales de ploteo, librerías técnicas y talleres disponibles en el
-        mismo Pabellón III.</li>
+                <li>
+                    <strong>Elección de cátedras:</strong> Una misma asignatura suele dictarse en varias cátedras
+                    paralelas con enfoques muy distintos; conviene revisar sus programas y trabajos previos antes de
+                    inscribir ramos.
+                </li>
+                <li>
+                    <strong>Especialización por carrera:</strong> Al estar el diseño dividido en carreras separadas
+                    (Gráfico, Industrial, Indumentaria, Textil e Imagen y Sonido), podrás cursar talleres más
+                    específicos y profundos en tu área de interés.
+                </li>
+                <li>
+                    <strong>Calendario cuatrimestral:</strong> El año académico se divide en dos cuatrimestres
+                    (marzo-julio y agosto-noviembre), con instancias de entregas y exámenes finales que requieren
+                    coordinar bien las fechas de regreso a Chile.
+                </li>
+                <li>
+                    <strong>Traslados a Ciudad Universitaria:</strong> El campus está en el barrio de Núñez, alejado
+                    del centro porteño; necesitarás la tarjeta SUBE y contemplar tiempos de viaje en colectivo o en el
+                    tren Belgrano Norte.
+                </li>
+                <li>
+                    <strong>Escala masiva y autogestión:</strong> Los cursos son numerosos y exigen autonomía, pero el
+                    edificio funciona casi como una ciudad propia, con locales de ploteo, librerías técnicas y talleres
+                    disponibles en el mismo Pabellón III.
+                </li>
             </ul>
 
             <hr />
@@ -487,10 +233,231 @@ Más allá del prestigio académico, adaptarse a la escala y al ritmo de la FADU
                 requerimientos de Diseño.
             </p>
 
-            <svg class="infografia" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 150">
-                <rect width="100" height="150" fill="lightgray" />
-                <text x="1" y="3" font-size="2">Desarrolla una infografía que presente el proceso Nivel FAU</text>
-            </svg>
+            <!-- INFOGRAFÍA INTERACTIVA NIVEL FAU -->
+            <section class="infografia-fau" aria-label="Infografía del proceso de intercambio Nivel FAU">
+                <h3 class="info-title">¿Cómo postular a un intercambio?</h3>
+                <p class="info-sub">Proceso de intercambio internacional de pregrado <em>(FAU, Universidad de Chile)</em></p>
+                <p class="info-lead">
+                    Conoce las seis etapas del <strong>proceso de intercambio</strong>, desde los requisitos de
+                    postulación hasta la convalidación de asignaturas. Esta información corresponde a la convocatoria
+                    para el <strong>segundo semestre de 2027</strong>, cuyo período de postulación es del
+                    <strong>22 de septiembre al 31 de octubre de 2026</strong>.
+                </p>
+                <p class="info-hint">Pasa el cursor o toca una etapa para ver el detalle; haz clic para dejarla fija.</p>
+
+                <svg
+                    id="info"
+                    viewBox="80 0 920 640"
+                    role="group"
+                    aria-label="Infografía de las seis etapas del intercambio estudiantil FAU"
+                >
+                    <!-- GLOBO TERRÁQUEO -->
+                    <defs>
+                        <clipPath id="gClip"><circle cx="200" cy="320" r="108" /></clipPath>
+                        <radialGradient id="gShade" cx=".35" cy=".3" r=".85">
+                            <stop offset="0" stop-color="#fff" stop-opacity=".35" />
+                            <stop offset=".6" stop-color="#fff" stop-opacity="0" />
+                            <stop offset="1" stop-color="#000" stop-opacity=".18" />
+                        </radialGradient>
+                    </defs>
+                    <g aria-hidden="true">
+                        <circle class="sea" cx="200" cy="320" r="108" />
+                        <g clip-path="url(#gClip)">
+                            <g class="grid">
+                                <ellipse cx="200" cy="320" rx="36" ry="108" />
+                                <ellipse cx="200" cy="320" rx="72" ry="108" />
+                                <line x1="200" y1="212" x2="200" y2="428" />
+                                <path d="M117.8 250A82.2 12 0 0 0 282.2 250" />
+                                <path d="M96.3 290A103.7 12 0 0 0 303.7 290" />
+                                <path d="M92.5 330A107.5 12 0 0 0 307.5 330" />
+                                <path d="M104.3 370A95.7 12 0 0 0 295.7 370" />
+                                <path d="M140.3 410A59.7 12 0 0 0 259.7 410" />
+                            </g>
+                            <path
+                                class="land"
+                                d="M150 236C160 226 190 220 220 224C240 226 252 236 250 246C246 256 236 258 232 262C228 266 226 268 226 270C218 262 206 258 196 262C186 258 170 252 160 250C150 246 146 240 150 236Z"
+                            />
+                            <path
+                                class="land"
+                                d="M226 270C236 258 256 256 268 264C280 268 296 276 304 288C306 300 292 316 280 330C270 342 268 356 262 370C256 388 244 404 236 418C232 414 226 400 224 384C222 360 222 336 220 316C216 296 218 280 226 270Z"
+                            />
+                            <circle cx="200" cy="320" r="108" fill="url(#gShade)" />
+                        </g>
+                        <circle class="rim" cx="200" cy="320" r="108" />
+                    </g>
+
+                    <!-- Ruta de vuelo -->
+                    <path class="route" d="M200 195A125 125 0 0 1 200 445" aria-hidden="true" />
+                    <path class="flown" id="flown" pathLength="100" d="M200 195A125 125 0 0 1 200 445" aria-hidden="true" />
+
+                    <!-- Texto central sobre el globo -->
+                    <rect class="hubbox" x="120" y="292" width="160" height="62" rx="12" />
+                    <text id="hubTop" class="hubt" x="200" y="312" font-size="12" style="fill: var(--info-muted)">
+                        Intercambio FAU
+                    </text>
+                    <text id="hubMain" class="hubt" x="200" y="339" font-size="18" font-weight="700">6 etapas</text>
+
+                    <!-- ETAPAS -->
+                    <g
+                        class="opt"
+                        style="--c: var(--s1)"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Etapa 01: Requisitos"
+                        data-n="01"
+                        data-name="Requisitos"
+                    >
+                        <g class="seg">
+                            <path d="M202.8 50.0A270 270 0 0 1 332.5 84.8L268.7 198.0A140 140 0 0 0 201.5 180.0Z" />
+                            <text class="snum" x="253.1" y="122.0" dy=".35em">01</text>
+                        </g>
+                        <path class="cn" d="M321.6 70.0H548" />
+                        <g class="lbl">
+                            <rect x="560" y="24" width="430" height="92" rx="6" />
+                            <text class="ttl" x="578" y="50">Requisitos</text>
+                            <text class="dsc" x="578" y="70">Estudiante regular FAU desde 3.er semestre,</text>
+                            <text class="dsc" x="578" y="87">promedio mínimo 4,5 y Bachiller General</text>
+                            <text class="dsc" x="578" y="104">(120 SCT), 6 créditos convalidables y arancel al día</text>
+                        </g>
+                    </g>
+
+                    <g
+                        class="opt"
+                        style="--c: var(--s2)"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Etapa 02: Documentación"
+                        data-n="02"
+                        data-name="Documentación"
+                    >
+                        <g class="seg">
+                            <path d="M337.4 87.6A270 270 0 0 1 432.4 182.6L320.5 248.7A140 140 0 0 0 271.3 199.5Z" />
+                            <text class="snum" x="345.0" y="175.0" dy=".35em">02</text>
+                        </g>
+                        <path class="cn" d="M434.1 170.0H548" />
+                        <g class="lbl">
+                            <rect x="560" y="124" width="430" height="92" rx="6" />
+                            <text class="ttl" x="578" y="150">Documentación</text>
+                            <text class="dsc" x="578" y="170">Formulario con hasta 3 universidades y 6</text>
+                            <text class="dsc" x="578" y="187">asignaturas tentativas. Adjunta carta de</text>
+                            <text class="dsc" x="578" y="204">motivación, idioma y pasaporte vigente.</text>
+                        </g>
+                    </g>
+
+                    <g
+                        class="opt"
+                        style="--c: var(--s3)"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Etapa 03: Selección"
+                        data-n="03"
+                        data-name="Selección"
+                    >
+                        <g class="seg">
+                            <path d="M435.2 187.5A270 270 0 0 1 470.0 317.2L340.0 318.5A140 140 0 0 0 322.0 251.3Z" />
+                            <text class="snum" x="398.0" y="266.9" dy=".35em">03</text>
+                        </g>
+                        <path class="cn" d="M473.5 270.0H548" />
+                        <g class="lbl">
+                            <rect x="560" y="224" width="430" height="92" rx="6" />
+                            <text class="ttl" x="578" y="250">Selección</text>
+                            <text class="dsc" x="578" y="270">Postula dentro del plazo. La facultad evalúa</text>
+                            <text class="dsc" x="578" y="287">los antecedentes y asigna cupos según</text>
+                            <text class="dsc" x="578" y="304">rendimiento académico. Resultados por correo.</text>
+                        </g>
+                    </g>
+
+                    <g
+                        class="opt"
+                        style="--c: var(--s4)"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Etapa 04: Adjudicación"
+                        data-n="04"
+                        data-name="Adjudicación"
+                    >
+                        <g class="seg">
+                            <path d="M470.0 322.8A270 270 0 0 1 435.2 452.5L322.0 388.7A140 140 0 0 0 340.0 321.5Z" />
+                            <text class="snum" x="398.0" y="373.1" dy=".35em">04</text>
+                        </g>
+                        <path class="cn" d="M473.5 370.0H548" />
+                        <g class="lbl">
+                            <rect x="560" y="324" width="430" height="92" rx="6" />
+                            <text class="ttl" x="578" y="350">Adjudicación</text>
+                            <text class="dsc" x="578" y="370">Confirma o rechaza con documento firmado en</text>
+                            <text class="dsc" x="578" y="387">7 días. Luego, reúne contrato de estudios</text>
+                            <text class="dsc" x="578" y="404">provisorio, certificado de salud y otros.</text>
+                        </g>
+                    </g>
+
+                    <g
+                        class="opt"
+                        style="--c: var(--s5)"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Etapa 05: Admisión"
+                        data-n="05"
+                        data-name="Admisión"
+                    >
+                        <g class="seg">
+                            <path d="M432.4 457.4A270 270 0 0 1 337.4 552.4L271.3 440.5A140 140 0 0 0 320.5 391.3Z" />
+                            <text class="snum" x="345.0" y="465.0" dy=".35em">05</text>
+                        </g>
+                        <path class="cn" d="M434.1 470.0H548" />
+                        <g class="lbl">
+                            <rect x="560" y="424" width="430" height="92" rx="6" />
+                            <text class="ttl" x="578" y="450">Admisión</text>
+                            <text class="dsc" x="578" y="470">La universidad de destino evalúa tu postulación</text>
+                            <text class="dsc" x="578" y="487">y envía la carta de aceptación. Gestiona visa,</text>
+                            <text class="dsc" x="578" y="504">seguro, pasajes y alojamiento por tu cuenta.</text>
+                        </g>
+                    </g>
+
+                    <g
+                        class="opt"
+                        style="--c: var(--s6)"
+                        tabindex="0"
+                        role="button"
+                        aria-label="Etapa 06: Convalidación"
+                        data-n="06"
+                        data-name="Convalidación"
+                    >
+                        <g class="seg">
+                            <path d="M332.5 555.2A270 270 0 0 1 202.8 590.0L201.5 460.0A140 140 0 0 0 268.7 442.0Z" />
+                            <text class="snum" x="253.1" y="518.0" dy=".35em">06</text>
+                        </g>
+                        <path class="cn" d="M321.6 570.0H548" />
+                        <g class="lbl">
+                            <rect x="560" y="524" width="430" height="92" rx="6" />
+                            <text class="ttl" x="578" y="550">Convalidación</text>
+                            <text class="dsc" x="578" y="570">Al finalizar, presenta tu certificado oficial</text>
+                            <text class="dsc" x="578" y="587">de notas y solicita el reconocimiento de</text>
+                            <text class="dsc" x="578" y="604">asignaturas según el acuerdo autorizado.</text>
+                        </g>
+                    </g>
+
+                    <!-- AVIÓN -->
+                    <g class="orbit" id="orbit" aria-hidden="true">
+                        <g transform="translate(200 195) scale(.8)">
+                            <path
+                                class="plane"
+                                d="M16 0C15 -1.8 12 -2.4 7 -2.4L-1 -14.5L-5.5 -14.5L-3 -2.4L-11 -2.4L-14 -6.5L-17.5 -6.5L-15.5 0L-17.5 6.5L-14 6.5L-11 2.4L-3 2.4L-5.5 14.5L-1 14.5L7 2.4C12 2.4 15 1.8 16 0Z"
+                            />
+                        </g>
+                    </g>
+                </svg>
+
+                <p class="info-fuente">
+                    <strong>Fuente:</strong> Facultad de Arquitectura y Urbanismo, Universidad de Chile. Convocatoria
+                    Movilidad Internacional de Pregrado FAU 1/2027. Disponible en:
+                    <a
+                        href="https://fau.uchile.cl/dari/convocatorias/convocatoria-movilidad-internacional-pregrado-fau-12027"
+                        target="_blank"
+                        rel="noopener"
+                        >fau.uchile.cl</a
+                    >.
+                </p>
+            </section>
         </div>
 
         <footer>
@@ -499,9 +466,16 @@ Más allá del prestigio académico, adaptarse a la escala y al ritmo de la FADU
                     <dt>¡Gracias por tu scroll!</dt>
                     <dd>
                         <em>Datos:</em>
-                        <a href="https://www.topuniversities.com/university-subject-rankings/art-design" target="_blank" rel="noopener">QS World University Rankings for Art and Design</a>
+                        <a
+                            href="https://www.topuniversities.com/university-subject-rankings/art-design"
+                            target="_blank"
+                            rel="noopener"
+                            >QS World University Rankings for Art and Design</a
+                        >
                         y
-                        <a href="https://www.topuniversities.com/world-university-rankings" target="_blank" rel="noopener">QS World University Rankings</a>
+                        <a href="https://www.topuniversities.com/world-university-rankings" target="_blank" rel="noopener"
+                            >QS World University Rankings</a
+                        >
                         consultados en noviembre de 2026.
                     </dd>
                     <dd>
@@ -512,119 +486,33 @@ Más allá del prestigio académico, adaptarse a la escala y al ritmo de la FADU
                     </dd>
                     <dd>
                         <em>Contexto:</em> Proyecto desarrollado como ejercicio final para la asignatura
-                        <a href="https://github.com/profesorfaco/troncal" target="_blank" rel="noopener">Diseño y Visualización de Información</a>,
-                        a cargo del Profesor Felipe Cortez.
+                        <a href="https://github.com/profesorfaco/troncal" target="_blank" rel="noopener"
+                            >Diseño y Visualización de Información</a
+                        >, a cargo del Profesor Felipe Cortez.
                     </dd>
                     <dd>
                         <em>Uso de IA:</em> En este trabajo de Diseño y Visualización de Información se utilizaron
-                        herramientas de inteligencia artificial generativa. Claude y Gemini. Estas fueron empleadas en
-                        el desarrollo de la infografía interactiva, así como en la corrección de textos y la
-                        organización del código. Todo el contenido fue revisado y validado por 
-                        <a href="https://github.com/evorakie" rel="me">Sayen Padilla</a> y <a href="https://github.com/ronnistp" rel="me">Veronica Soto</a>,
-                        quienes asumimos plena responsabilidad sobre el trabajo presentado.
+                        herramientas de inteligencia artificial generativa: Claude y Gemini. Estas fueron empleadas en
+                        el desarrollo de la infografía interactiva (Claude), así como en la corrección de textos y la
+                        organización del código (Gemini). Todo el contenido fue revisado y validado por
+                        <a href="https://github.com/evorakie" rel="me">Sayen Padilla</a> y
+                        <a href="https://github.com/ronnistp" rel="me">Veronica Soto</a>, quienes asumimos plena
+                        responsabilidad sobre el trabajo presentado.
                     </dd>
                     <dd>
                         <em>Recomendación:</em> Revisa otros destinos de intercambio, tales como:
-                        <a href="https://bastich03.github.io/Clase_15/" target="_blank" rel="noopener">Politécnico de Milán</a>,
-                        <a href="https://carolmabel.github.io/evaluacion-final/" target="_blank" rel="noopener">Universidad de São Paulo</a>,
-                        <a href="#" target="_blank" rel="noopener">Universidad Nacional Autónoma de México</a> u el
+                        <a href="https://bastich03.github.io/Clase_15/" target="_blank" rel="noopener"
+                            >Politécnico de Milán</a
+                        >,
+                        <a href="https://carolmabel.github.io/evaluacion-final/" target="_blank" rel="noopener"
+                            >Universidad de São Paulo</a
+                        >, <a href="#" target="_blank" rel="noopener">Universidad Nacional Autónoma de México</a> o el
                         <a href="#" target="_blank" rel="noopener">Tecnológico de Monterrey</a>.
                     </dd>
                 </dl>
             </div>
         </footer>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                // Datos: única fuente para textos y cuadrículas
-                const datos = {
-                    universidades: { total: 1504, origen: 185, destino: 84 },
-                    escuelas: { total: 303, origen: 155, destino: 74 },
-                };
-
-                document.querySelectorAll("[data-dato]").forEach((el) => {
-                    const [grupo, campo] = el.dataset.dato.split(".");
-                    el.textContent = datos[grupo][campo];
-                });
-
-                // Cuadrículas de ranking
-                const ranking = (id, { total, origen, destino }) => {
-                    const min = Math.min(origen, destino);
-                    const max = Math.max(origen, destino);
-                    const celdas = Array.from({ length: total }, (_, i) => {
-                        const n = i + 1;
-                        const clase = n === destino ? "destino" : n === origen ? "origen" : n > min && n < max ? "entre" : "";
-                        return `<span class="${clase}">${n}</span>`;
-                    });
-                    document.getElementById(id).innerHTML = celdas.join("");
-                };
-
-                ranking("universidades", datos.universidades);
-                ranking("escuelas", datos.escuelas);
-
-                // Gráficos de radar
-               // Gráficos de radar
-const radar = (id, { labels, origen, destino }) =>
-    new Chart(document.getElementById(id), {
-        type: "radar",
-        data: {
-            labels: labels,
-            datasets: [
-                {
-                    label: "Origen (U.Chile)",
-                    data: origen,
-                    borderColor: "rgb(23, 23, 125)",
-                    backgroundColor: "rgba(54, 88, 235, 0.2)",
-                },
-                {
-                    label: "Destino (UBA)",
-                    data: destino,
-                    borderColor: "rgb(248, 167, 0)",
-                    backgroundColor: "rgba(255, 215, 99, 0.29)",
-                },
-            ],
-        },
-    });
-
-// 1. Gráfico de Universidades (QS World University Rankings)
-                   radar("comparaUniversidades", {
-                    labels: [
-        "Academic Reputation",
-        "Employer Reputation",
-        "Faculty Student Ratio",
-        "Citations per Faculty",
-        "International Faculty",
-        "International Students",
-        "International Research Network",
-    ],
-    origen: [92.0, 85.1, 9.9, 16.0, 10.6, 8.2, 76.8],
-    destino: [98.1, 91.7, 85.3, 2.1, 71.1, 81.8, 75.0],
-});
-
-// 2. Gráfico de Escuelas (QS by Subject: Art & Design)
-radar("comparaEscuelas", {
-    labels: [
-        "Overall Score",
-        "Academic Reputation",
-        "Employer Reputation",
-    ],
-    origen: [55.1, 52.5, 78.5], // Reemplaza con los datos reales de U. de Chile
-    destino: [65.7, 63.9, 81.6], // Reemplaza con los datos reales de UBA
-});
-
-                // Mapa
-                const map = L.map("map").setView([-34.54125, -58.443944], 3);
-
-                L.tileLayer(
-                    "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
-                    { maxZoom: 16, attribution: "Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ" }
-                ).addTo(map);
-
-                L.marker([-34.54125, -58.443944])
-                    .addTo(map)
-                    .bindPopup("<b>Universidad de Buenos Aires</b><br />Facultad de Arquitectura, Diseño y Urbanismo.")
-                    .openPopup();
-            });
-        </script>
+        <script src="script.js"></script>
     </body>
 </html>
